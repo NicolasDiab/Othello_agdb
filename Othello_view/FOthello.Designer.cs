@@ -72,6 +72,8 @@
             this.dgv.RowHeadersVisible = false;
             this.dgv.Size = new System.Drawing.Size(480, 480);
             this.dgv.TabIndex = 0;
+            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
+            this.dgv.Paint += new System.Windows.Forms.PaintEventHandler(this.dgv_Paint);
             // 
             // menu
             // 
@@ -139,18 +141,21 @@
             this.joueurVsJoueurToolStripMenuItem.Name = "joueurVsJoueurToolStripMenuItem";
             this.joueurVsJoueurToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.joueurVsJoueurToolStripMenuItem.Text = "Joueur vs Joueur";
+            this.joueurVsJoueurToolStripMenuItem.Click += new System.EventHandler(this.joueurVsJoueurToolStripMenuItem_Click);
             // 
             // joueurVsIAToolStripMenuItem
             // 
             this.joueurVsIAToolStripMenuItem.Name = "joueurVsIAToolStripMenuItem";
             this.joueurVsIAToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.joueurVsIAToolStripMenuItem.Text = "Joueur vs IA";
+            this.joueurVsIAToolStripMenuItem.Click += new System.EventHandler(this.joueurVsIAToolStripMenuItem_Click);
             // 
             // iAVsIAToolStripMenuItem
             // 
             this.iAVsIAToolStripMenuItem.Name = "iAVsIAToolStripMenuItem";
             this.iAVsIAToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.iAVsIAToolStripMenuItem.Text = "IA vs IA";
+            this.iAVsIAToolStripMenuItem.Click += new System.EventHandler(this.iAVsIAToolStripMenuItem_Click);
             // 
             // FOthello
             // 
