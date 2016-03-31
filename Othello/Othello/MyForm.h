@@ -40,6 +40,23 @@ namespace Othello {
 	private: System::Windows::Forms::ToolStripMenuItem^  joueurVsJoueurToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  joueurVsIAToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  iAVsIAToolStripMenuItem;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col1;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col2;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col3;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col4;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col5;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col6;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col7;
+	private: System::Windows::Forms::DataGridViewButtonColumn^  col8;
+
+
+
+
+
+
+
+
+
 	protected:
 
 
@@ -64,24 +81,48 @@ namespace Othello {
 			this->joueurVsJoueurToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->joueurVsIAToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->iAVsIAToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->col1 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->col2 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->col3 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->col4 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->col5 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->col6 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->col7 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->col8 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv))->BeginInit();
 			this->menu->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dgv
 			// 
+			this->dgv->AllowUserToDeleteRows = false;
+			this->dgv->AllowUserToResizeColumns = false;
+			this->dgv->AllowUserToResizeRows = false;
+			this->dgv->BackgroundColor = System::Drawing::SystemColors::Window;
+			this->dgv->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->dgv->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
 			this->dgv->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgv->Location = System::Drawing::Point(32, 55);
+			this->dgv->ColumnHeadersVisible = false;
+			this->dgv->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->col1, this->col2,
+					this->col3, this->col4, this->col5, this->col6, this->col7, this->col8
+			});
+			this->dgv->Location = System::Drawing::Point(87, 27);
 			this->dgv->Name = L"dgv";
-			this->dgv->Size = System::Drawing::Size(240, 150);
+			this->dgv->RowHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+			this->dgv->RowHeadersVisible = false;
+			this->dgv->RowHeadersWidth = 20;
+			this->dgv->ShowEditingIcon = false;
+			this->dgv->Size = System::Drawing::Size(600, 600);
 			this->dgv->TabIndex = 0;
+			this->dgv->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dgv_CellContentClick);
 			// 
 			// menu
 			// 
 			this->menu->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->optionsToolStripMenuItem });
 			this->menu->Location = System::Drawing::Point(0, 0);
 			this->menu->Name = L"menu";
-			this->menu->Size = System::Drawing::Size(284, 24);
+			this->menu->Size = System::Drawing::Size(784, 24);
 			this->menu->TabIndex = 1;
 			this->menu->Text = L"menu";
 			// 
@@ -113,16 +154,57 @@ namespace Othello {
 			this->iAVsIAToolStripMenuItem->Size = System::Drawing::Size(161, 22);
 			this->iAVsIAToolStripMenuItem->Text = L"IA vs IA";
 			// 
+			// col1
+			// 
+			this->col1->HeaderText = L"1";
+			this->col1->Name = L"col1";
+			// 
+			// col2
+			// 
+			this->col2->HeaderText = L"2";
+			this->col2->Name = L"col2";
+			// 
+			// col3
+			// 
+			this->col3->HeaderText = L"3";
+			this->col3->Name = L"col3";
+			// 
+			// col4
+			// 
+			this->col4->HeaderText = L"4";
+			this->col4->Name = L"col4";
+			// 
+			// col5
+			// 
+			this->col5->HeaderText = L"5";
+			this->col5->Name = L"col5";
+			// 
+			// col6
+			// 
+			this->col6->HeaderText = L"6";
+			this->col6->Name = L"col6";
+			// 
+			// col7
+			// 
+			this->col7->HeaderText = L"7";
+			this->col7->Name = L"col7";
+			// 
+			// col8
+			// 
+			this->col8->HeaderText = L"8";
+			this->col8->Name = L"col8";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(784, 741);
 			this->Controls->Add(this->dgv);
 			this->Controls->Add(this->menu);
 			this->MainMenuStrip = this->menu;
 			this->Name = L"MyForm";
 			this->Text = L"Othello";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv))->EndInit();
 			this->menu->ResumeLayout(false);
 			this->menu->PerformLayout();
@@ -131,5 +213,9 @@ namespace Othello {
 
 		}
 #pragma endregion
-	};
+	private: System::Void dgv_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+	}
+private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+}
+};
 }
