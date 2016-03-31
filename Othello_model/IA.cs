@@ -8,12 +8,15 @@ namespace Othello_model
 {
     public class IA
     {
-        public IA() {
+        private Map map;
 
+        public IA(Map map) {
+            this.map = map;
         }
 
         public void play(Map map) {
-            // Method de jeu
+            // Methode de jeu
         }
+
     }
 }

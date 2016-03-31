@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Othello_model;
+
 namespace Othello_view
 {
     public partial class FOthello : Form
     {
-        private int[,] matrix;
+        private Map map;
         public int free;
         public int mode;
         public int lastPlayed;
@@ -52,14 +54,7 @@ namespace Othello_view
             }
 
             // Remplit la matrice de 0
-            matrix = new int[8, 8];
-            for (int i = 0; i <= 7; i++)
-            {
-                for (int j = 0; j <= 7; j++)
-                {
-                    matrix[i, j] = 0;
-                }
-            }
+            map = new Map();
         }
 
 
@@ -71,9 +66,9 @@ namespace Othello_view
 
             dgv.ClearSelection();
 
-            if (matrix[i, j] == 0)
+            if (map.getMatrix()[i, j] == 0)
             {
-                if (lastPlayed == -1) matrix[i, j] = 1; else matrix[i, j] = -1;
+                if (lastPlayed == -1) map.getMatrix()[i, j] = 1; else map.getMatrix()[i, j] = -1;
                 lastPlayed = -lastPlayed;
 
                 free--;
@@ -100,14 +95,14 @@ namespace Othello_view
             {
                 for (int j = 0; j <= 7; j++)
                 {
-                    if (matrix[i, j] == 1)
+                    if (map.getMatrix()[i, j] == 1)
                     {
                         DataGridViewButtonColumn c = (DataGridViewButtonColumn)dgv.Columns[j];
                         c.FlatStyle = FlatStyle.Popup;
                         dgv.Rows[i].Cells[j].Style.BackColor = Color.Aqua;
                         dgv.Rows[i].Cells[j].Style.ForeColor = Color.Aqua;
                     }
-                    else if (matrix[i, j] == -1)
+                    else if (map.getMatrix()[i, j] == -1)
                     {
                         DataGridViewButtonColumn c = (DataGridViewButtonColumn)dgv.Columns[j];
                         c.FlatStyle = FlatStyle.Popup;
@@ -147,7 +142,7 @@ namespace Othello_view
             {
                 for (int j = 0; j <= 7; j++)
                 {
-                    matrix[i, j] = 0;
+                    map.getMatrix()[i, j] = 0;
                 }
             }
 
@@ -169,22 +164,25 @@ namespace Othello_view
 
         private void printWinner()
         {
-            /*int winner = othello.computeWin();
-            if (winner == 0 && free == 0)
+            if (free == 0)
             {
-                MessageBox.Show("Egalité");
-                resetJeu();
+
+                /*if (winner == 0 && free == 0)
+                {
+                    MessageBox.Show("Egalité");
+                    resetJeu();
+                }
+                else if (winner == 1)
+                {
+                    MessageBox.Show("Joueur 1 gagne");
+                    resetJeu();
+                }
+                else if (winner == -1)
+                {
+                    MessageBox.Show("Joueur 2 gagne");
+                    resetJeu();
+                }*/
             }
-            else if (winner == 1)
-            {
-                MessageBox.Show("Joueur 1 gagne");
-                resetJeu();
-            }
-            else if (winner == -1)
-            {
-                MessageBox.Show("Joueur 2 gagne");
-                resetJeu();
-            }*/
 
         }
 
