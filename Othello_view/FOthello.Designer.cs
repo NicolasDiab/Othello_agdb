@@ -3,14 +3,14 @@
     partial class FOthello
     {
         /// <summary>
-        /// Variable nécessaire au concepteur.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Nettoyage des ressources utilisées.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,52 +20,119 @@
             base.Dispose(disposing);
         }
 
-        #region Code généré par le Concepteur Windows Form
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-        /// le contenu de cette méthode avec l'éditeur de code.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv = new System.Windows.Forms.DataGridView();
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.col1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.col2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.col3 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.col4 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.col5 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.col6 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.col7 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.col8 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joueurVsJoueurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joueurVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.joueurVsIAToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.iAVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgv
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(126, 27);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(480, 480);
-            this.dataGridView1.TabIndex = 0;
+            this.dgv.AllowDrop = true;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToResizeColumns = false;
+            this.dgv.AllowUserToResizeRows = false;
+            this.dgv.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.ColumnHeadersVisible = false;
+            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col1,
+            this.col2,
+            this.col3,
+            this.col4,
+            this.col5,
+            this.col6,
+            this.col7,
+            this.col8});
+            this.dgv.Location = new System.Drawing.Point(79, 27);
+            this.dgv.MultiSelect = false;
+            this.dgv.Name = "dgv";
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.Size = new System.Drawing.Size(480, 480);
+            this.dgv.TabIndex = 0;
             // 
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem});
+            this.optionToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(784, 24);
+            this.menu.Size = new System.Drawing.Size(684, 24);
             this.menu.TabIndex = 1;
             this.menu.Text = "menuStrip1";
             // 
-            // optionsToolStripMenuItem
+            // col1
             // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.col1.HeaderText = "1";
+            this.col1.Name = "col1";
+            // 
+            // col2
+            // 
+            this.col2.HeaderText = "2";
+            this.col2.Name = "col2";
+            // 
+            // col3
+            // 
+            this.col3.HeaderText = "3";
+            this.col3.Name = "col3";
+            // 
+            // col4
+            // 
+            this.col4.HeaderText = "4";
+            this.col4.Name = "col4";
+            // 
+            // col5
+            // 
+            this.col5.HeaderText = "5";
+            this.col5.Name = "col5";
+            // 
+            // col6
+            // 
+            this.col6.HeaderText = "6";
+            this.col6.Name = "col6";
+            // 
+            // col7
+            // 
+            this.col7.HeaderText = "7";
+            this.col7.Name = "col7";
+            // 
+            // col8
+            // 
+            this.col8.HeaderText = "8";
+            this.col8.Name = "col8";
+            // 
+            // optionToolStripMenuItem
+            // 
+            this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.joueurVsJoueurToolStripMenuItem,
             this.joueurVsIAToolStripMenuItem,
-            this.joueurVsIAToolStripMenuItem1});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.iAVsIAToolStripMenuItem});
+            this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
+            this.optionToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionToolStripMenuItem.Text = "Options";
+            this.optionToolStripMenuItem.Click += new System.EventHandler(this.optionToolStripMenuItem_Click);
             // 
             // joueurVsJoueurToolStripMenuItem
             // 
@@ -79,23 +146,24 @@
             this.joueurVsIAToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.joueurVsIAToolStripMenuItem.Text = "Joueur vs IA";
             // 
-            // joueurVsIAToolStripMenuItem1
+            // iAVsIAToolStripMenuItem
             // 
-            this.joueurVsIAToolStripMenuItem1.Name = "joueurVsIAToolStripMenuItem1";
-            this.joueurVsIAToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
-            this.joueurVsIAToolStripMenuItem1.Text = "Joueur vs IA";
+            this.iAVsIAToolStripMenuItem.Name = "iAVsIAToolStripMenuItem";
+            this.iAVsIAToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.iAVsIAToolStripMenuItem.Text = "IA vs IA";
             // 
             // FOthello
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.dgv);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
             this.Name = "FOthello";
-            this.Text = " Othello game";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Text = "FOthello";
+            this.Load += new System.EventHandler(this.FOthello_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
@@ -105,12 +173,19 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.DataGridViewButtonColumn col1;
+        private System.Windows.Forms.DataGridViewButtonColumn col2;
+        private System.Windows.Forms.DataGridViewButtonColumn col3;
+        private System.Windows.Forms.DataGridViewButtonColumn col4;
+        private System.Windows.Forms.DataGridViewButtonColumn col5;
+        private System.Windows.Forms.DataGridViewButtonColumn col6;
+        private System.Windows.Forms.DataGridViewButtonColumn col7;
+        private System.Windows.Forms.DataGridViewButtonColumn col8;
         private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joueurVsJoueurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joueurVsIAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem joueurVsIAToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem iAVsIAToolStripMenuItem;
     }
 }
-
