@@ -22,7 +22,7 @@ namespace Othello_model
             this.matrix[5, 4] = -1;
         }
 
-        public List<int[]> findMove() {
+        public List<int[]> findMove(int playerValue) {
 
             return null;
         }
@@ -31,11 +31,11 @@ namespace Othello_model
             matrix[x,y] = value;
         }
 
-        public int getScore(int value) {
+        public int getScore(int playerValue) {
             int score = 0;
             for (int l = 0; l < 8; l++) {
                 for (int c = 0; l < 8; c++) {
-                    if (matrix[l,c] == value) {
+                    if (matrix[l,c] == playerValue) {
                         score++;
                     }
                 }                
