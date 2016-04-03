@@ -23,40 +23,54 @@ namespace Othello_model
         }
 
         public List<int[]> findMove(int playerValue) {
+            List<int[]> spacesPlayabe = new List<int[]>();
             for (int l = 0; l < 8; l++)
             {
-                for (int c = 0; l < 8; c++)
+                for (int c = 0; c < 8; c++)
                 {
-                    
+                    int[] position = new int[] { l, c };
+                    if (spacePlayable(position, playerValue)) {
+                        spacesPlayabe.Add(position);
+                    }
                 }
             }
-            return null;
+            return spacesPlayabe;
         }
 
-        private bool spacePlayable(int[] vecteur) {
-            if (matrix[vecteur[0], vecteur[1]] != 0) {
+        private bool spacePlayable(int[] position, int playerValue) {
+            if (matrix[position[0], position[1]] != 0) {
                 return false;
             }
-
-
-            return true;//testLine(vecteur,
+            return testLine(position, (new int[] { 0, 1 }), playerValue) || 
+                testLine(position, (new int[] { 1, 1 }), playerValue) ||
+                testLine(position, (new int[] { 1, 0 }), playerValue) ||
+                testLine(position, (new int[] { 1, -1 }), playerValue) ||
+                testLine(position, (new int[] { 0, -1 }), playerValue) ||
+                testLine(position, (new int[] { -1, -1 }), playerValue) ||
+                testLine(position, (new int[] { -1, 0 }), playerValue) ||
+                testLine(position, (new int[] { -1, 1 }), playerValue);
         }
 
-        private bool testLine(int[] vecteur, int[] direction, int value) {
-            int nextX = vecteur[0] + direction[0];
-            int nextY = vecteur[1] + direction[1];
+        private bool testLine(int[] position, int[] direction, int playerValue) {
+            int nextX = position[0] + direction[0];
+            int nextY = position[1] + direction[1];
             bool test = validPoint(nextX, nextY);
-            if (test & matrix[nextX, nextY] == value * -1) {                
+            
+            if (!test){
+                return false;
+            }
+            if (matrix[nextX, nextY] == playerValue * -1) {                
                 while (true) {
                     nextX = nextX + direction[0];
                     nextY = nextX + direction[1];
-                    if (!validPoint(nextX, nextY)){
-                        if (matrix[nextX, nextY] == value) {
-                            return false;
+                    test = validPoint(nextX, nextY);
+                    if (test){
+                        if (matrix[nextX, nextY] == playerValue) {
+                            return true;
                         }
                         if (matrix[nextX, nextY] == 0)
                         {
-                            return true;
+                            return false;
                         }
                     } else {
                         return false;
@@ -67,7 +81,7 @@ namespace Othello_model
         }
 
         private bool validPoint(int x, int y) {
-            if ((x >= 0 & x < 8) & (y >= 0 & x < 8)) {
+            if ((x >= 0 && x < 8) && (y >= 0 && y < 8)) {
                 return true;
             }
             return false;

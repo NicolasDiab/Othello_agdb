@@ -55,6 +55,7 @@ namespace Othello_view
 
             // Remplit la matrice de 0
             map = new Map();
+            refresh();
         }
 
 
@@ -63,7 +64,7 @@ namespace Othello_view
         {
             int j = e.ColumnIndex;
             int i = e.RowIndex;
-
+            LBTest.Text = " x:" + j + "  y:" + i;
             dgv.ClearSelection();
 
             if (map.getMatrix()[i, j] == 0)
@@ -81,9 +82,15 @@ namespace Othello_view
                         free--;
                     }*/
                 }
-                colorizeBoard();
+                refresh();
                 printWinner();
             }
+        }
+
+        private void refresh() {
+            dgv.ClearSelection();
+            colorizeBoard();
+            //colorizePlayableSpace(-lastPlayed);
         }
         
 
@@ -102,6 +109,13 @@ namespace Othello_view
                         dgv.Rows[i].Cells[j].Style.BackColor = Color.Aqua;
                         dgv.Rows[i].Cells[j].Style.ForeColor = Color.Aqua;
                     }
+                    if (map.getMatrix()[i, j] == 0)
+                    {
+                        DataGridViewButtonColumn c = (DataGridViewButtonColumn)dgv.Columns[j];
+                        c.FlatStyle = FlatStyle.Popup;
+                        dgv.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        dgv.Rows[i].Cells[j].Style.ForeColor = Color.White;
+                    }
                     else if (map.getMatrix()[i, j] == -1)
                     {
                         DataGridViewButtonColumn c = (DataGridViewButtonColumn)dgv.Columns[j];
@@ -110,6 +124,13 @@ namespace Othello_view
                         dgv.Rows[i].Cells[j].Style.ForeColor = Color.Black;
                     }
                 }
+            }
+        }
+
+        private void colorizePlayableSpace(int playerValue) {
+            foreach (int[] position in map.findMove(playerValue)) {
+                dgv.Rows[position[0]].Cells[position[1]].Style.BackColor = Color.Green;
+                dgv.Rows[position[0]].Cells[position[1]].Style.ForeColor = Color.Green;
             }
         }
 

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.menu = new System.Windows.Forms.MenuStrip();
             this.col1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.col2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.col3 = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -38,10 +37,12 @@
             this.col6 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.col7 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.col8 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.menu = new System.Windows.Forms.MenuStrip();
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joueurVsJoueurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joueurVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iAVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LBTest = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -74,16 +75,6 @@
             this.dgv.TabIndex = 0;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             this.dgv.Paint += new System.Windows.Forms.PaintEventHandler(this.dgv_Paint);
-            // 
-            // menu
-            // 
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionToolStripMenuItem});
-            this.menu.Location = new System.Drawing.Point(0, 0);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(684, 24);
-            this.menu.TabIndex = 1;
-            this.menu.Text = "menuStrip1";
             // 
             // col1
             // 
@@ -125,6 +116,16 @@
             this.col8.HeaderText = "8";
             this.col8.Name = "col8";
             // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(684, 24);
+            this.menu.TabIndex = 1;
+            this.menu.Text = "menuStrip1";
+            // 
             // optionToolStripMenuItem
             // 
             this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -157,11 +158,21 @@
             this.iAVsIAToolStripMenuItem.Text = "IA vs IA";
             this.iAVsIAToolStripMenuItem.Click += new System.EventHandler(this.iAVsIAToolStripMenuItem_Click);
             // 
+            // LBTest
+            // 
+            this.LBTest.AutoSize = true;
+            this.LBTest.Location = new System.Drawing.Point(113, 539);
+            this.LBTest.Name = "LBTest";
+            this.LBTest.Size = new System.Drawing.Size(35, 13);
+            this.LBTest.TabIndex = 2;
+            this.LBTest.Text = "label1";
+            // 
             // FOthello
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.LBTest);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
@@ -192,5 +203,6 @@
         private System.Windows.Forms.ToolStripMenuItem joueurVsJoueurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joueurVsIAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iAVsIAToolStripMenuItem;
+        private System.Windows.Forms.Label LBTest;
     }
 }
