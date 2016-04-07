@@ -160,7 +160,7 @@ namespace Othello_model
             return direction;
         }
 
-        public Map Clone()
+        public Object Clone()
         {
             return new Map((int[,])matrix.Clone());
         }
