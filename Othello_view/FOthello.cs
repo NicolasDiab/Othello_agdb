@@ -71,22 +71,20 @@ namespace Othello_view
                 MessageBox.Show("Vous ne pouvez pas jouer !!");
                 lastPlayed = -lastPlayed;
                 refresh();
-            } else if (map.getMatrix()[i, j] == 0)
-            {
-                
+            } else if (map.getMatrix()[i, j] == 0) {
                 if (map.isPlayableMove(lastPlayed * -1, i, j)) {
                     map.playMove(lastPlayed * -1, i, j);
                 lastPlayed = -lastPlayed;
 
                 free--;
-                if (mode != 0)
+                if (mode != 1)
                 {
-                    /*if (free > 0 && othello.computeWin() == 0)
+                    // Choix IA
+                    if (free > 0)
                     {
-                        // Choix IA
-                        othello.computeChoice();
+                        ia.play();
                         free--;
-                    }*/
+                    }
                 }
                 refresh();
                 printWinner();
