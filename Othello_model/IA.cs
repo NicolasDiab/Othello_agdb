@@ -18,7 +18,7 @@ namespace Othello_model
         }
 
         public void play() {
-            var returnedValue = minimax(map, 0, 5);
+            var returnedValue = minimax(map, 0, 4);
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
 
@@ -26,39 +26,35 @@ namespace Othello_model
         }
 
         // return multiple values : score and chosenMove[]
-        private KeyValuePair<int, int[]> minimax(Map map, int depth, int maxDepth)
-        {
+        private KeyValuePair<int, int[]> minimax(Map map, int depth, int maxDepth) {
             int[] chosenMove = new int[] { 0, 0 }; // default
             int chosenScore = 0;
 
-            if (depth == maxDepth)
-            {
+            if (depth == maxDepth) {
                 chosenScore = map.getScore(this.playerValue);
             }
             else {
                 List<int[]> moveList = map.findMove(this.playerValue);
-                if (moveList.Count == 0)
-                {
+                if (moveList.Count == 0) {
                     chosenScore = map.getScore(this.playerValue);
                 }
                 else {
                     int bestScore = 666; //infinity
                     int[] bestMove = new int[] { 0, 0 }; // default
 
-                    for (int i = 1; i < moveList.Count; i++)
-                    {
-                        bestScore = 666; // infinity
+                    bestScore = 666; // infinity
 
-                        Map map2 = map.clone();
+                    for (int i = 1; i < moveList.Count; i++) {
+
+                        Map map2 = (Map)map.Clone();
                         map2.playMove(playerValue, moveList[i][0], moveList[i][1]);
 
                         // return 2 values
                         var returnedValue = minimax(map2, depth + 1, maxDepth);
                         int theScore = returnedValue.Key;
-                        int[] theMove = returnedValue.Value;
+                        int[] theMove = new int[] { moveList[i][0], moveList[i][1] };
 
-                        if (theScore < bestScore)
-                        {
+                        if (theScore < bestScore) {
                             bestScore = theScore;
                             bestMove = theMove;
                         }

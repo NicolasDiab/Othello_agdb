@@ -69,25 +69,28 @@ namespace Othello_view
             dgv.ClearSelection();
             if (map.getMatrix()[i, j] == 0)
             {
-                
                 if (map.isPlayableMove(lastPlayed * -1, i, j)) {
                     map.playMove(lastPlayed * -1, i, j);
-                lastPlayed = -lastPlayed;
+                    lastPlayed = -lastPlayed;
 
-                free--;
-                if (mode != 1)
-                {
-                    // Choix IA
-                    if (free > 0)
+                    free--;
+                    refresh();
+                    printWinner();
+                    if (mode != 1)
                     {
-                        ia.play();
-                        free--;
+                        // Choix IA
+                        if (free > 0)
+                        {
+                            System.Threading.Thread.Sleep(2000);
+                            ia.play();
+                            lastPlayed = -lastPlayed;
+                            free--;
+                            refresh();
+                            printWinner();
+                        }
                     }
                 }
-                refresh();
-                printWinner();
             }
-        }
             if (nextAbleMove.Count == 0)
             {
                 MessageBox.Show("Vous ne pouvez pas jouer !!");
