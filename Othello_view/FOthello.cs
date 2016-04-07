@@ -69,7 +69,7 @@ namespace Othello_view
 
             if (map.getMatrix()[i, j] == 0)
             {
-                if (lastPlayed == -1) map.getMatrix()[i, j] = 1; else map.getMatrix()[i, j] = -1;
+                if (lastPlayed == -1) map.playMove(1,i,j); else map.playMove(-1, i, j);
                 lastPlayed = -lastPlayed;
 
                 free--;
@@ -90,7 +90,7 @@ namespace Othello_view
         private void refresh() {
             dgv.ClearSelection();
             colorizeBoard();
-            //colorizePlayableSpace(-lastPlayed);
+            colorizePlayableSpace(-lastPlayed);
         }
         
 
