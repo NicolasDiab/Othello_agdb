@@ -67,11 +67,9 @@ namespace Othello_view
             int j = e.ColumnIndex;
             int i = e.RowIndex;
             dgv.ClearSelection();
-            if (nextAbleMove.Count == 0) {
-                MessageBox.Show("Vous ne pouvez pas jouer !!");
-                lastPlayed = -lastPlayed;
-                refresh();
-            } else if (map.getMatrix()[i, j] == 0) {
+            if (map.getMatrix()[i, j] == 0)
+            {
+                
                 if (map.isPlayableMove(lastPlayed * -1, i, j)) {
                     map.playMove(lastPlayed * -1, i, j);
                 lastPlayed = -lastPlayed;
@@ -90,6 +88,12 @@ namespace Othello_view
                 printWinner();
             }
         }
+            if (nextAbleMove.Count == 0)
+            {
+                MessageBox.Show("Vous ne pouvez pas jouer !!");
+                lastPlayed = -lastPlayed;
+                refresh();
+            }
 
             if (free == 0) {
 
