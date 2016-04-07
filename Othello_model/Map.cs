@@ -37,6 +37,14 @@ namespace Othello_model
             return spacesPlayabe;
         }
 
+        public bool isPlayableMove(int playerValue, int x, int y) {
+            foreach (int[] move in findMove(playerValue)) {
+                if (move[0] == x && move[1] == y)
+                    return true;
+            }
+            return false;
+        }
+
         private bool spacePlayable(int[] position, int playerValue) {
             if (matrix[position[0], position[1]] != 0) {
                 return false;

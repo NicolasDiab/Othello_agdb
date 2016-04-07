@@ -18,6 +18,7 @@ namespace Othello_view
         public int free;
         public int mode;
         public int lastPlayed;
+        private List<int[]> nextAbleMove;
 
         
         public FOthello()
@@ -64,26 +65,36 @@ namespace Othello_view
         {
             int j = e.ColumnIndex;
             int i = e.RowIndex;
-            LBTest.Text = " x:" + j + "  y:" + i;
             dgv.ClearSelection();
-
-            if (map.getMatrix()[i, j] == 0)
-            {
-                if (lastPlayed == -1) map.playMove(1,i,j); else map.playMove(-1, i, j);
+            if (nextAbleMove.Count == 0) {
+                MessageBox.Show("Vous ne pouvez pas jouer !!");
                 lastPlayed = -lastPlayed;
-
-                free--;
-                if (mode != 0)
-                {
-                    /*if (free > 0 && othello.computeWin() == 0)
-                    {
-                        // Choix IA
-                        othello.computeChoice();
-                        free--;
-                    }*/
-                }
                 refresh();
-                printWinner();
+            } else if (map.getMatrix()[i, j] == 0)
+            {
+                
+                if (map.isPlayableMove(lastPlayed * -1, i, j)) {
+                    map.playMove(lastPlayed * -1, i, j);
+                    lastPlayed = -lastPlayed;
+
+                    free--;
+                    if (mode != 0)
+                    {
+                        /*if (free > 0 && othello.computeWin() == 0)
+                        {
+                            // Choix IA
+                            othello.computeChoice();
+                            free--;
+                        }*/
+                    }
+                    refresh();
+                    printWinner();
+                }                
+            }
+
+            if (free == 0) {
+
+                MessageBox.Show("Joueur "+ ((map.getScore(1) > map.getScore(-1))? "1": "2" )+ " a gagné");
             }
         }
 
@@ -91,7 +102,8 @@ namespace Othello_view
             printPlayerInfo();
             dgv.ClearSelection();
             colorizeBoard();
-            colorizePlayableSpace(-lastPlayed);
+            nextAbleMove = map.findMove(-lastPlayed);
+            colorizePlayableSpace(nextAbleMove);
         }
         
 
@@ -107,15 +119,15 @@ namespace Othello_view
                     {
                         DataGridViewButtonColumn c = (DataGridViewButtonColumn)dgv.Columns[j];
                         c.FlatStyle = FlatStyle.Popup;
-                        dgv.Rows[i].Cells[j].Style.BackColor = Color.Aqua;
-                        dgv.Rows[i].Cells[j].Style.ForeColor = Color.Aqua;
+                        dgv.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        dgv.Rows[i].Cells[j].Style.ForeColor = Color.White;
                     }
                     if (map.getMatrix()[i, j] == 0)
                     {
                         DataGridViewButtonColumn c = (DataGridViewButtonColumn)dgv.Columns[j];
                         c.FlatStyle = FlatStyle.Popup;
-                        dgv.Rows[i].Cells[j].Style.BackColor = Color.White;
-                        dgv.Rows[i].Cells[j].Style.ForeColor = Color.White;
+                        dgv.Rows[i].Cells[j].Style.BackColor = Color.Green;
+                        dgv.Rows[i].Cells[j].Style.ForeColor = Color.Green;
                     }
                     else if (map.getMatrix()[i, j] == -1)
                     {
@@ -128,10 +140,10 @@ namespace Othello_view
             }
         }
 
-        private void colorizePlayableSpace(int playerValue) {
-            foreach (int[] position in map.findMove(playerValue)) {
-                dgv.Rows[position[0]].Cells[position[1]].Style.BackColor = Color.Green;
-                dgv.Rows[position[0]].Cells[position[1]].Style.ForeColor = Color.Green;
+        private void colorizePlayableSpace(List<int[]>move) {
+            foreach (int[] position in move) {
+                dgv.Rows[position[0]].Cells[position[1]].Style.BackColor = Color.OrangeRed;
+                dgv.Rows[position[0]].Cells[position[1]].Style.ForeColor = Color.OrangeRed;
             }
         }
 
@@ -140,7 +152,7 @@ namespace Othello_view
         {
             Point currentPoint = new Point(0, 0);
             Size size = new Size(60, 60);
-            Pen myPen = new Pen(Color.Red, 3);
+            Pen myPen = new Pen(Color.Gray, 3);
 
             for (int i = 0; i <= 7; i++)
             {
@@ -156,7 +168,7 @@ namespace Othello_view
 
         public void printPlayerInfo()
         {
-            string player = (lastPlayed == 1 ? "noir" : "bleu");
+            string player = (lastPlayed == 1 ? "noir" : "blanc");
             txbJoueur.Text = "Joueur " + player + " joue";
             txbScoreBlue.Text = ""+map.getScore(1);
             txbScoreBlack.Text = ""+map.getScore(-1);

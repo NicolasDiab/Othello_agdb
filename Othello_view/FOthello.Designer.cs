@@ -201,6 +201,8 @@
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
+            this.MaximumSize = new System.Drawing.Size(700, 600);
+            this.MinimumSize = new System.Drawing.Size(700, 600);
             this.Name = "FOthello";
             this.Text = "FOthello";
             this.Load += new System.EventHandler(this.FOthello_Load);
