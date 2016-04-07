@@ -44,6 +44,8 @@
             this.iAVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LBTest = new System.Windows.Forms.Label();
             this.txbJoueur = new System.Windows.Forms.TextBox();
+            this.txbScoreBlack = new System.Windows.Forms.TextBox();
+            this.txbScoreBlue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -178,11 +180,33 @@
             this.txbJoueur.Size = new System.Drawing.Size(145, 26);
             this.txbJoueur.TabIndex = 3;
             // 
+            // txbScoreBlack
+            // 
+            this.txbScoreBlack.BackColor = System.Drawing.Color.Gray;
+            this.txbScoreBlack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbScoreBlack.ForeColor = System.Drawing.Color.Black;
+            this.txbScoreBlack.Location = new System.Drawing.Point(560, 160);
+            this.txbScoreBlack.Name = "txbScoreBlack";
+            this.txbScoreBlack.Size = new System.Drawing.Size(124, 26);
+            this.txbScoreBlack.TabIndex = 4;
+            // 
+            // txbScoreBlue
+            // 
+            this.txbScoreBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txbScoreBlue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbScoreBlue.ForeColor = System.Drawing.Color.Blue;
+            this.txbScoreBlue.Location = new System.Drawing.Point(560, 114);
+            this.txbScoreBlue.Name = "txbScoreBlue";
+            this.txbScoreBlue.Size = new System.Drawing.Size(124, 26);
+            this.txbScoreBlue.TabIndex = 5;
+            // 
             // FOthello
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.txbScoreBlue);
+            this.Controls.Add(this.txbScoreBlack);
             this.Controls.Add(this.txbJoueur);
             this.Controls.Add(this.LBTest);
             this.Controls.Add(this.dgv);
@@ -217,5 +241,7 @@
         private System.Windows.Forms.ToolStripMenuItem iAVsIAToolStripMenuItem;
         private System.Windows.Forms.Label LBTest;
         private System.Windows.Forms.TextBox txbJoueur;
+        private System.Windows.Forms.TextBox txbScoreBlack;
+        private System.Windows.Forms.TextBox txbScoreBlue;
     }
 }

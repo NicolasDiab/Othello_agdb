@@ -94,7 +94,7 @@ namespace Othello_model
         public int getScore(int playerValue) {
             int score = 0;
             for (int l = 0; l < 8; l++) {
-                for (int c = 0; l < 8; c++) {
+                for (int c = 0; c < 8; c++) {
                     if (matrix[l,c] == playerValue) {
                         score++;
                     }
