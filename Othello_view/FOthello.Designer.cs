@@ -43,6 +43,7 @@
             this.joueurVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iAVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LBTest = new System.Windows.Forms.Label();
+            this.txbJoueur = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -167,11 +168,22 @@
             this.LBTest.TabIndex = 2;
             this.LBTest.Text = "label1";
             // 
+            // txbJoueur
+            // 
+            this.txbJoueur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.txbJoueur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbJoueur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txbJoueur.Location = new System.Drawing.Point(256, 0);
+            this.txbJoueur.Name = "txbJoueur";
+            this.txbJoueur.Size = new System.Drawing.Size(145, 26);
+            this.txbJoueur.TabIndex = 3;
+            // 
             // FOthello
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.txbJoueur);
             this.Controls.Add(this.LBTest);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.menu);
@@ -204,5 +216,6 @@
         private System.Windows.Forms.ToolStripMenuItem joueurVsIAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iAVsIAToolStripMenuItem;
         private System.Windows.Forms.Label LBTest;
+        private System.Windows.Forms.TextBox txbJoueur;
     }
 }

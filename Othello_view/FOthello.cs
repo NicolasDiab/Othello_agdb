@@ -88,6 +88,7 @@ namespace Othello_view
         }
 
         private void refresh() {
+            printPlayerTurn();
             dgv.ClearSelection();
             colorizeBoard();
             //colorizePlayableSpace(-lastPlayed);
@@ -151,6 +152,12 @@ namespace Othello_view
                     e.Graphics.DrawRectangle(myPen, rect);
                 }
             }
+        }
+
+        public void printPlayerTurn()
+        {
+            string player = (lastPlayed == 1 ? "noir" : "bleu");
+            txbJoueur.Text = "Joueur " + player + " joue";
         }
 
         // remet le plateau de jeu à 0
