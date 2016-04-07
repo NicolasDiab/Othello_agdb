@@ -18,6 +18,7 @@ namespace Othello_view
         public int free;
         public int mode;
         public int lastPlayed;
+        public IA ia;
 
         
         public FOthello()
@@ -230,6 +231,7 @@ namespace Othello_view
         private void joueurVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 2;
+            ia = new IA(map, -1);
         }
 
         private void iAVsIAToolStripMenuItem_Click(object sender, EventArgs e)
