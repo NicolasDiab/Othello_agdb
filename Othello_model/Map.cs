@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Othello_model
 {
-    public class Map
+    public class Map : ICloneable
     {
         private int[,] matrix;        
 
@@ -160,5 +160,9 @@ namespace Othello_model
             return direction;
         }
 
+        public Map Clone()
+        {
+            return new Map((int[,])matrix.Clone());
+        }
     }
 }
