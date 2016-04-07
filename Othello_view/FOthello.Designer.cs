@@ -42,7 +42,6 @@
             this.joueurVsJoueurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joueurVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iAVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LBTest = new System.Windows.Forms.Label();
             this.txbJoueur = new System.Windows.Forms.TextBox();
             this.txbScoreBlack = new System.Windows.Forms.TextBox();
             this.txbScoreBlue = new System.Windows.Forms.TextBox();
@@ -161,15 +160,6 @@
             this.iAVsIAToolStripMenuItem.Text = "IA vs IA";
             this.iAVsIAToolStripMenuItem.Click += new System.EventHandler(this.iAVsIAToolStripMenuItem_Click);
             // 
-            // LBTest
-            // 
-            this.LBTest.AutoSize = true;
-            this.LBTest.Location = new System.Drawing.Point(113, 539);
-            this.LBTest.Name = "LBTest";
-            this.LBTest.Size = new System.Drawing.Size(35, 13);
-            this.LBTest.TabIndex = 2;
-            this.LBTest.Text = "label1";
-            // 
             // txbJoueur
             // 
             this.txbJoueur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
@@ -208,10 +198,11 @@
             this.Controls.Add(this.txbScoreBlue);
             this.Controls.Add(this.txbScoreBlack);
             this.Controls.Add(this.txbJoueur);
-            this.Controls.Add(this.LBTest);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
+            this.MaximumSize = new System.Drawing.Size(700, 600);
+            this.MinimumSize = new System.Drawing.Size(700, 600);
             this.Name = "FOthello";
             this.Text = "FOthello";
             this.Load += new System.EventHandler(this.FOthello_Load);
@@ -239,7 +230,6 @@
         private System.Windows.Forms.ToolStripMenuItem joueurVsJoueurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joueurVsIAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iAVsIAToolStripMenuItem;
-        private System.Windows.Forms.Label LBTest;
         private System.Windows.Forms.TextBox txbJoueur;
         private System.Windows.Forms.TextBox txbScoreBlack;
         private System.Windows.Forms.TextBox txbScoreBlue;
