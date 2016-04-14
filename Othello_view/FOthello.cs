@@ -105,6 +105,7 @@ namespace Othello_view
         }
 
         private void ComputerPlay() {
+            if(map.findMove.)
             ia.play();
             lastPlayed = -lastPlayed;
             free--;
@@ -242,17 +243,23 @@ namespace Othello_view
         private void joueurVsJoueurToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 1;
+            resetJeu();
+            refresh();
         }
 
         private void joueurVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 2;
             ia = new IA(map, -1);
+            resetJeu();
+            refresh();
         }
 
         private void iAVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 3;
+            resetJeu();
+            refresh();
         }
 
         private void btnSurrend_Click(object sender, EventArgs e)
