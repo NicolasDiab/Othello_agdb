@@ -70,10 +70,7 @@ namespace Othello_view
             if (map.getMatrix()[i, j] == 0)
             {
                 if (map.isPlayableMove(lastPlayed * -1, i, j)) {
-                    map.playMove(lastPlayed * -1, i, j);
-                    lastPlayed = -lastPlayed;
-
-                    free--;
+                    HumanPlay(i, j);
                     refresh();
                     printWinner();
                     if (mode != 1)
@@ -81,10 +78,7 @@ namespace Othello_view
                         // Choix IA
                         if (free > 0)
                         {
-                            System.Threading.Thread.Sleep(2000);
-                            ia.play();
-                            lastPlayed = -lastPlayed;
-                            free--;
+                            ComputerPlay();
                             refresh();
                             printWinner();
                         }
@@ -102,6 +96,18 @@ namespace Othello_view
 
                 MessageBox.Show("Joueur "+ ((map.getScore(1) > map.getScore(-1))? "1": "2" )+ " a gagné");
             }
+        }
+
+        private void HumanPlay(int i, int j) {
+            map.playMove(lastPlayed * -1, i, j);
+            lastPlayed = -lastPlayed;
+            free--;
+        }
+
+        private void ComputerPlay() {
+            ia.play();
+            lastPlayed = -lastPlayed;
+            free--;
         }
 
         private void refresh() {

@@ -26,7 +26,7 @@ namespace Othello_model
         }
 
         // return multiple values : score and chosenMove[]
-        private KeyValuePair<int, int[]> minimax(Map map, int depth, int maxDepth) {
+        private KeyValuePair<int, int[]> minimaxImpossible(Map map, int depth, int maxDepth) {
             int[] chosenMove = new int[] { 0, 0 }; // default
             int chosenScore = 0;
 
@@ -68,7 +68,7 @@ namespace Othello_model
         }
 
         // IA buguéeeee ONE SHOT
-        private KeyValuePair<int, int[]> minimaxImpossible(Map map, int depth, int maxDepth)
+        private KeyValuePair<int, int[]> minimax(Map map, int depth, int maxDepth)
         {
             int[] chosenMove = new int[] { 0, 0 }; // default
             int chosenScore = 0;
