@@ -97,6 +97,9 @@ namespace Othello_model
         }
 
         public void playMove(int x, int y) {
+            if (!validPoint(x, y)) {
+                throw new Exception();
+            }
             matrix[x,y] = playerValue;
             computeStoneSteal(playerValue, x, y);
             this.playerValue = -this.playerValue;
