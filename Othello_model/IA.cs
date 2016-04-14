@@ -11,14 +11,18 @@ namespace Othello_model
     {
         private Map map;
         private int playerValue;
+        private int depth;
 
-        public IA(Map map, int playerValue) {
+        public IA(Map map, int playerValue) :this(map, playerValue, 4) {}
+
+        public IA(Map map, int playerValue, int depth) {
             this.map = map;
             this.playerValue = playerValue;
+            this.depth = depth;
         }
 
         public void play() {
-            var returnedValue = minimax(map, 0, 4);
+            var returnedValue = minimax(map, 0, this.depth);
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
 
