@@ -16,6 +16,7 @@ namespace Othello_view
     {
         private Map map;
         public int mode;
+        public int difficulty;
         public IA ia;
         private List<int[]> nextAbleMove;
 
@@ -24,6 +25,7 @@ namespace Othello_view
         {
             InitializeComponent();
             mode = 1;
+            difficulty = 1;
         }
 
         private void FOthello_Load(object sender, EventArgs e)
@@ -274,5 +276,13 @@ namespace Othello_view
             refresh();
             MessageBox.Show("PLEUTRE");
         }
+
+        private void eventSetDifficulty(object sender, EventArgs e) {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            int.TryParse(item.Text, out difficulty);
+            resetJeu();
+            ia = new IA(map, map.getPlayerValue()); // TODO 
+        }
+
     }
 }
