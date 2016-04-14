@@ -99,7 +99,7 @@ namespace Othello_view
         }
 
         private void HumanPlay(int i, int j) {
-            map.playMove(lastPlayed * -1, i, j);
+            map.playMove(i, j);
             lastPlayed = -lastPlayed;
             free--;
         }
