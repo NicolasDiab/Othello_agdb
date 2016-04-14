@@ -171,6 +171,10 @@ namespace Othello_model
             return direction;
         }
 
+        public int getNbFreeSpace() {
+            return getScore(0);
+        }
+
         public Object Clone()
         {
             return new Map((int[,])matrix.Clone());

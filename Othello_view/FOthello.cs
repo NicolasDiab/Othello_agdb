@@ -15,9 +15,7 @@ namespace Othello_view
     public partial class FOthello : Form
     {
         private Map map;
-        public int free;
         public int mode;
-        public int lastPlayed;
         public IA ia;
         private List<int[]> nextAbleMove;
 
@@ -25,9 +23,7 @@ namespace Othello_view
         public FOthello()
         {
             InitializeComponent();
-            free = 64;
             mode = 1;
-            lastPlayed = -1;
         }
 
         private void FOthello_Load(object sender, EventArgs e)
@@ -69,14 +65,14 @@ namespace Othello_view
             dgv.ClearSelection();
             if (map.getMatrix()[i, j] == 0)
             {
-                if (map.isPlayableMove(lastPlayed * -1, i, j)) {
+                if (map.isPlayableMove(map.getPlayerValue(), i, j)) {
                     HumanPlay(i, j);
                     refresh();
                     printWinner();
                     if (mode != 1)
                     {
                         // Choix IA
-                        if (free > 0)
+                        if (map.getNbFreeSpace() > 0)
                         {
                             ComputerPlay();
                             refresh();
@@ -85,36 +81,36 @@ namespace Othello_view
                     }
                 }
             }
-            if (nextAbleMove.Count == 0)
-            {
+            if (map.getNbFreeSpace() == 0) {
+                MessageBox.Show("Joueur " + ((map.getScore(1) > map.getScore(-1)) ? "1" : "2") + " a gagné");
+            } else if (nextAbleMove.Count == 0) {
                 MessageBox.Show("Vous ne pouvez pas jouer !!");
-                lastPlayed = -lastPlayed;
+                map.passMove();
                 refresh();
             }
-
-            if (free == 0) {
-
-                MessageBox.Show("Joueur "+ ((map.getScore(1) > map.getScore(-1))? "1": "2" )+ " a gagné");
             }
-        }
 
         private void HumanPlay(int i, int j) {
             map.playMove(i, j);
-            lastPlayed = -lastPlayed;
-            free--;
         }
 
         private void ComputerPlay() {
+            if (map.findMove(map.getPlayerValue()).Count > 0)
+            {
             ia.play();
-            lastPlayed = -lastPlayed;
-            free--;
+            }
+            else {
+                map.passMove();
+            }
+            
+            
         }
 
         private void refresh() {
             printPlayerInfo();
             dgv.ClearSelection();
             colorizeBoard();
-            nextAbleMove = map.findMove(-lastPlayed);
+            nextAbleMove = map.findMove(map.getPlayerValue());
             colorizePlayableSpace(nextAbleMove);
         }
         
@@ -180,7 +176,7 @@ namespace Othello_view
 
         public void printPlayerInfo()
         {
-            string player = (lastPlayed == 1 ? "noir" : "blanc");
+            string player = (map.getPlayerValue() == 1 ? "blanc" : "noir");
             txbJoueur.Text = "Joueur " + player + " joue";
             txbScoreBlue.Text = ""+map.getScore(1);
             txbScoreBlack.Text = ""+map.getScore(-1);
@@ -189,7 +185,7 @@ namespace Othello_view
         // remet le plateau de jeu à 0
         private void resetJeu()
         {
-            free = 64;
+
 
             this.map = new Map();
 
@@ -211,7 +207,7 @@ namespace Othello_view
 
         private void printWinner()
         {
-            if (free == 0)
+            if (map.getNbFreeSpace() == 0)
             {
 
                 /*if (winner == 0 && free == 0)
@@ -242,17 +238,23 @@ namespace Othello_view
         private void joueurVsJoueurToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 1;
+            resetJeu();
+            refresh();
         }
 
         private void joueurVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 2;
             ia = new IA(map, -1);
+            resetJeu();
+            refresh();
         }
 
         private void iAVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 3;
+            resetJeu();
+            refresh();
         }
 
         private void btnSurrend_Click(object sender, EventArgs e)
