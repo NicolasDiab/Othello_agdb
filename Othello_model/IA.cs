@@ -22,7 +22,7 @@ namespace Othello_model
         }
 
         public void play() {
-            var returnedValue = minimax(map, 0, this.depth);
+            var returnedValue = minimax(map, playerValue, this.depth);
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
 
