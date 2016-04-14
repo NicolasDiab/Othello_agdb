@@ -21,12 +21,13 @@ namespace Othello_model
             this.depth = depth;
         }
 
-        public void play() {
+        public int[] play() {
             var returnedValue = minimax(map, playerValue, this.depth);
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
 
-            map.playMove(playerValue, theMove[0], theMove[1]);
+            map.playMove(theMove[0], theMove[1]);
+            return theMove;
         }
 
         // return multiple values : score and chosenMove[]
@@ -51,7 +52,7 @@ namespace Othello_model
                     for (int i = 1; i < moveList.Count; i++) {
 
                         Map map2 = (Map)map.Clone();
-                        map2.playMove(playerValue, moveList[i][0], moveList[i][1]);
+                        map2.playMove(moveList[i][0], moveList[i][1]);
 
                         // return 2 values
                         var returnedValue = minimax(map2, depth + 1, maxDepth);
@@ -93,7 +94,7 @@ namespace Othello_model
                         bestScore = 666; // infinity
 
                         Map map2 = map;
-                        map2.playMove(playerValue, moveList[i][0], moveList[i][1]);
+                        map2.playMove(moveList[i][0], moveList[i][1]);
 
                         // return 2 values
                         var returnedValue = minimax(map2, depth + 1, maxDepth);

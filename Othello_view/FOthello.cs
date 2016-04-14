@@ -69,15 +69,15 @@ namespace Othello_view
                     HumanPlay(i, j);
                     refresh();
                     printWinner();
-                    if (mode != 1)
+
+                    switch (mode)
                     {
-                        // Choix IA
-                        if (map.getNbFreeSpace() > 0)
-                        {
-                            ComputerPlay();
-                            refresh();
-                            printWinner();
-                        }
+                        case 2:
+                            modPlayerVSIA();
+                            break;
+                        case 3:
+                            modIAVSIA();
+                            break;
                     }
                 }
             }
@@ -90,6 +90,16 @@ namespace Othello_view
             }
         }
 
+        public void modPlayerVSIA() {
+            if (map.getNbFreeSpace() > 0)
+            {
+                ComputerPlay();
+                refresh();
+                printWinner();
+            }
+        }
+        public void modIAVSIA() { }
+
         private void HumanPlay(int i, int j) {
             map.playMove(i, j);
         }
@@ -97,7 +107,13 @@ namespace Othello_view
         private void ComputerPlay() {
             if (map.findMove(map.getPlayerValue()).Count > 0)
             {
-                ia.play();
+                int player = map.getPlayerValue();
+                int[] move  = ia.play();
+                MessageBox.Show("Player"+ (player == 1 ? "blanc" : "noir") + "x : " + move[0] + " y : " + move[1]);
+                
+                MessageBox.Show("Prochain player : " + (map.getPlayerValue() == 1 ? "blanc" : "noir"));
+
+
             }
             else {
                 map.passMove();
