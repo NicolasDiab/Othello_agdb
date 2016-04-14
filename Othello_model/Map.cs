@@ -8,10 +8,12 @@ namespace Othello_model
 {
     public class Map : ICloneable
     {
-        private int[,] matrix;        
+        private int[,] matrix;
+        private int playerValue;
 
         public Map(int[,] matrix) {
             this.matrix = matrix;
+            this.playerValue = 1;
         }
 
         public Map() {
@@ -20,6 +22,7 @@ namespace Othello_model
             this.matrix[4, 4] = 1;
             this.matrix[3, 4] = -1;
             this.matrix[4, 3] = -1;
+            this.playerValue = 1;
         }
 
         public List<int[]> findMove(int playerValue) {
@@ -93,10 +96,14 @@ namespace Othello_model
             return false;
         }
 
-        public void playMove(int playerValue, int x, int y) {
+        public void playMove(int x, int y) {
             matrix[x,y] = playerValue;
             computeStoneSteal(playerValue, x, y);
-            
+            this.playerValue = -this.playerValue;
+        }
+
+        public void passMove() {
+            this.playerValue = -this.playerValue;
         }
 
         private void computeStoneSteal(int playerValue, int x, int y)
@@ -140,6 +147,10 @@ namespace Othello_model
                 }                
             }
             return score;
+        }
+
+        public int getPlayerValue() {
+            return this.playerValue;
         }
 
         public int[,] getMatrix() {
