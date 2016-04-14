@@ -45,6 +45,7 @@
             this.txbJoueur = new System.Windows.Forms.TextBox();
             this.txbScoreBlack = new System.Windows.Forms.TextBox();
             this.txbScoreBlue = new System.Windows.Forms.TextBox();
+            this.btnSurrend = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -167,6 +168,7 @@
             this.txbJoueur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.txbJoueur.Location = new System.Drawing.Point(256, 0);
             this.txbJoueur.Name = "txbJoueur";
+            this.txbJoueur.ReadOnly = true;
             this.txbJoueur.Size = new System.Drawing.Size(145, 26);
             this.txbJoueur.TabIndex = 3;
             // 
@@ -177,6 +179,7 @@
             this.txbScoreBlack.ForeColor = System.Drawing.Color.Black;
             this.txbScoreBlack.Location = new System.Drawing.Point(560, 160);
             this.txbScoreBlack.Name = "txbScoreBlack";
+            this.txbScoreBlack.ReadOnly = true;
             this.txbScoreBlack.Size = new System.Drawing.Size(124, 26);
             this.txbScoreBlack.TabIndex = 4;
             // 
@@ -187,14 +190,29 @@
             this.txbScoreBlue.ForeColor = System.Drawing.Color.Blue;
             this.txbScoreBlue.Location = new System.Drawing.Point(560, 114);
             this.txbScoreBlue.Name = "txbScoreBlue";
+            this.txbScoreBlue.ReadOnly = true;
             this.txbScoreBlue.Size = new System.Drawing.Size(124, 26);
             this.txbScoreBlue.TabIndex = 5;
+            // 
+            // btnSurrend
+            // 
+            this.btnSurrend.BackColor = System.Drawing.Color.Red;
+            this.btnSurrend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSurrend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSurrend.Location = new System.Drawing.Point(256, 513);
+            this.btnSurrend.Name = "btnSurrend";
+            this.btnSurrend.Size = new System.Drawing.Size(140, 36);
+            this.btnSurrend.TabIndex = 6;
+            this.btnSurrend.Text = "Abandonner";
+            this.btnSurrend.UseVisualStyleBackColor = false;
+            this.btnSurrend.Click += new System.EventHandler(this.btnSurrend_Click);
             // 
             // FOthello
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.btnSurrend);
             this.Controls.Add(this.txbScoreBlue);
             this.Controls.Add(this.txbScoreBlack);
             this.Controls.Add(this.txbJoueur);
@@ -233,5 +251,6 @@
         private System.Windows.Forms.TextBox txbJoueur;
         private System.Windows.Forms.TextBox txbScoreBlack;
         private System.Windows.Forms.TextBox txbScoreBlue;
+        private System.Windows.Forms.Button btnSurrend;
     }
 }

@@ -11,14 +11,18 @@ namespace Othello_model
     {
         private Map map;
         private int playerValue;
+        private int depth;
 
-        public IA(Map map, int playerValue) {
+        public IA(Map map, int playerValue) :this(map, playerValue, 4) {}
+
+        public IA(Map map, int playerValue, int depth) {
             this.map = map;
             this.playerValue = playerValue;
+            this.depth = depth;
         }
 
         public void play() {
-            var returnedValue = minimax(map, 0, 4);
+            var returnedValue = minimax(map, playerValue, this.depth);
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
 
@@ -26,7 +30,7 @@ namespace Othello_model
         }
 
         // return multiple values : score and chosenMove[]
-        private KeyValuePair<int, int[]> minimaxImpossible(Map map, int depth, int maxDepth) {
+        private KeyValuePair<int, int[]> minimax(Map map, int depth, int maxDepth) {
             int[] chosenMove = new int[] { 0, 0 }; // default
             int chosenScore = 0;
 
@@ -68,7 +72,7 @@ namespace Othello_model
         }
 
         // IA buguéeeee ONE SHOT
-        private KeyValuePair<int, int[]> minimax(Map map, int depth, int maxDepth)
+        private KeyValuePair<int, int[]> minimaxImpossible(Map map, int depth, int maxDepth)
         {
             int[] chosenMove = new int[] { 0, 0 }; // default
             int chosenScore = 0;

@@ -191,14 +191,7 @@ namespace Othello_view
         {
             free = 64;
 
-            // Remplit la matrice de 0
-            for (int i = 0; i <= 7; i++)
-            {
-                for (int j = 0; j <= 7; j++)
-                {
-                    map.getMatrix()[i, j] = 0;
-                }
-            }
+            this.map = new Map();
 
             // Supprime les lignes
             // ajoute les lignes
@@ -260,6 +253,13 @@ namespace Othello_view
         private void iAVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mode = 3;
+        }
+
+        private void btnSurrend_Click(object sender, EventArgs e)
+        {
+            resetJeu();
+            refresh();
+            MessageBox.Show("PLEUTRE");
         }
     }
 }
