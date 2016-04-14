@@ -109,11 +109,6 @@ namespace Othello_view
             {
                 int player = map.getPlayerValue();
                 int[] move  = ia.play();
-                MessageBox.Show("Player"+ (player == 1 ? "blanc" : "noir") + "x : " + move[0] + " y : " + move[1]);
-                
-                MessageBox.Show("Prochain player : " + (map.getPlayerValue() == 1 ? "blanc" : "noir"));
-
-
             }
             else {
                 map.passMove();
@@ -260,9 +255,9 @@ namespace Othello_view
 
         private void joueurVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mode = 2;
-            ia = new IA(map, -1);
+            mode = 2;            
             resetJeu();
+            ia = new IA(map, -1);
             refresh();
         }
 

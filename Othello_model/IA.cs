@@ -26,7 +26,7 @@ namespace Othello_model
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
 
-            map.playMove(theMove[0], theMove[1]);
+            this.map.playMove(theMove[0], theMove[1]);
             return theMove;
         }
 
