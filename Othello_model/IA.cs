@@ -12,6 +12,8 @@ namespace Othello_model
         private Map map;
         private int playerValue;
         private int depth;
+        private int BEST_WHITE;
+        private int BEST_BLACK;
 
         public IA(Map map, int playerValue) :this(map, playerValue, 4) {}
 
@@ -19,19 +21,74 @@ namespace Othello_model
             this.map = map;
             this.playerValue = playerValue;
             this.depth = depth;
+            BEST_WHITE = 1;
+            BEST_BLACK = 18;
         }
 
-        public void play() {
-            var returnedValue = minimax(map, playerValue, this.depth);
+        public int[] play() {
+            //var returnedValue = minimax(map, playerValue, this.depth);
+            var returnedValue = minmaxAlphaBeta(this.map, this.playerValue,
+                this.depth, this.BEST_BLACK, this.BEST_WHITE);
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
 
-            map.playMove(playerValue, theMove[0], theMove[1]);
+            if (theMove[0] != -1 && theMove[1] != -1) map.playMove(theMove[0], theMove[1]);
+            return theMove;
         }
 
-        // return multiple values : score and chosenMove[]
-        private KeyValuePair<int, int[]> minimax(Map map, int depth, int maxDepth) {
+        // recursive minmax algorithme without alpha beta cutoffs
+        // return multiple values of multiple types : int score ; int[] chosenMove
+        private KeyValuePair<int, int[]> minmax(Map map, int depth, int maxDepth)
+        {
             int[] chosenMove = new int[] { 0, 0 }; // default
+            int chosenScore = 0;
+
+            if (depth == maxDepth)
+            {
+                chosenScore = map.getScore(this.playerValue);
+            }
+            else {
+                List<int[]> moveList = map.findMove(this.playerValue);
+                if (moveList.Count == 0)
+                {
+                    chosenScore = map.getScore(this.playerValue);
+                }
+                else {
+                    int bestScore = 666; //infinity
+                    int[] bestMove = new int[] { 0, 0 }; // default
+
+                    bestScore = 666; // infinity
+
+                    for (int i = 1; i < moveList.Count; i++)
+                    {
+
+                        Map map2 = (Map)map.Clone();
+                        map2.playMove(moveList[i][0], moveList[i][1]);
+
+                        // return 2 values
+                        var returnedValue = minimax(map2, depth + 1, maxDepth);
+                        int theScore = returnedValue.Key;
+                        int[] theMove = new int[] { moveList[i][0], moveList[i][1] };
+
+                        if (theScore < bestScore)
+                        {
+                            bestScore = theScore;
+                            bestMove = theMove;
+                        }
+                    }
+                    chosenScore = bestScore;
+                    chosenMove = bestMove;
+                }
+            }
+            // return multiple values : score and chosenMove[]
+            return new KeyValuePair<int, int[]>(chosenScore, chosenMove);
+        }
+
+        // recursive minmax algorithme with alpha beta cutoffs
+        // return multiple values of multiple types : int score ; int[] chosenMove
+        private KeyValuePair<int, int[]> minmaxAlphaBeta(Map map, int depth, int maxDepth,
+            int blackBest, int whiteBest) {
+            int[] chosenMove = new int[] { -1, -1 }; // default move
             int chosenScore = 0;
 
             if (depth == maxDepth) {
@@ -43,24 +100,34 @@ namespace Othello_model
                     chosenScore = map.getScore(this.playerValue);
                 }
                 else {
-                    int bestScore = 666; //infinity
-                    int[] bestMove = new int[] { 0, 0 }; // default
-
-                    bestScore = 666; // infinity
+                    int bestScore = 666; // infinity
+                    int[] bestMove = new int[] { -1, -1 }; // default move
 
                     for (int i = 1; i < moveList.Count; i++) {
-
                         Map map2 = (Map)map.Clone();
-                        map2.playMove(playerValue, moveList[i][0], moveList[i][1]);
+                        map2.playMove(moveList[i][0], moveList[i][1]);
 
                         // return 2 values
-                        var returnedValue = minimax(map2, depth + 1, maxDepth);
+                        var returnedValue = minmaxAlphaBeta(map2, this.depth + 1, maxDepth,
+                            blackBest, whiteBest);
                         int theScore = returnedValue.Key;
                         int[] theMove = new int[] { moveList[i][0], moveList[i][1] };
 
-                        if (theScore < bestScore) {
-                            bestScore = theScore;
+                        // black turn - change score
+                        if ((map.getPlayerValue() == -1) && (theScore > blackBest)) {
                             bestMove = theMove;
+                            bestScore = blackBest;
+                            if (theScore >= whiteBest) break;  //  alpha_beta cutoff
+                            else blackBest = theScore;
+                            bestMove = theMove;
+                            bestScore = blackBest;
+                        } // white turn - change score
+                        if ((map.getPlayerValue() == 1) && (theScore < whiteBest)) {
+                            
+                            if (theScore <= whiteBest) break;  //  alpha_beta cutoff
+                            else whiteBest = theScore;
+                            bestMove = theMove;
+                            bestScore = whiteBest;
                         }
                     }
                     chosenScore = bestScore;
@@ -93,10 +160,10 @@ namespace Othello_model
                         bestScore = 666; // infinity
 
                         Map map2 = map;
-                        map2.playMove(playerValue, moveList[i][0], moveList[i][1]);
+                        map2.playMove(moveList[i][0], moveList[i][1]);
 
                         // return 2 values
-                        var returnedValue = minimax(map2, depth + 1, maxDepth);
+                        var returnedValue = minimaxImpossible(map2, depth + 1, maxDepth);
                         int theScore = returnedValue.Key;
                         int[] theMove = returnedValue.Value;
                         
