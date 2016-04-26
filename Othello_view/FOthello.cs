@@ -16,6 +16,7 @@ namespace Othello_view
     {
         private Map map;
         public int mode;
+        public int difficulty;
         public IA ia;
         private List<int[]> nextAbleMove;
 
@@ -24,6 +25,7 @@ namespace Othello_view
         {
             InitializeComponent();
             mode = 1;
+            difficulty = 1;
         }
 
         private void FOthello_Load(object sender, EventArgs e)
@@ -69,15 +71,15 @@ namespace Othello_view
                     HumanPlay(i, j);
                     refresh();
                     printWinner();
-                    if (mode != 1)
+
+                    switch (mode)
                     {
-                        // Choix IA
-                        if (map.getNbFreeSpace() > 0)
-                        {
-                            ComputerPlay();
-                            refresh();
-                            printWinner();
-                        }
+                        case 2:
+                            modPlayerVSIA();
+                            break;
+                        case 3:
+                            modIAVSIA();
+                            break;
                     }
                 }
             }
@@ -88,7 +90,17 @@ namespace Othello_view
                 map.passMove();
                 refresh();
             }
+        }
+
+        public void modPlayerVSIA() {
+            if (map.getNbFreeSpace() > 0)
+            {
+                ComputerPlay();
+                refresh();
+                printWinner();
             }
+        }
+        public void modIAVSIA() { }
 
         private void HumanPlay(int i, int j) {
             map.playMove(i, j);
@@ -97,7 +109,8 @@ namespace Othello_view
         private void ComputerPlay() {
             if (map.findMove(map.getPlayerValue()).Count > 0)
             {
-            ia.play();
+                int player = map.getPlayerValue();
+                int[] move  = ia.play();
             }
             else {
                 map.passMove();
@@ -244,9 +257,9 @@ namespace Othello_view
 
         private void joueurVsIAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mode = 2;
-            ia = new IA(map, -1);
+            mode = 2;            
             resetJeu();
+            ia = new IA(map, -1);
             refresh();
         }
 
@@ -263,5 +276,13 @@ namespace Othello_view
             refresh();
             MessageBox.Show("PLEUTRE");
         }
+
+        private void eventSetDifficulty(object sender, EventArgs e) {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            int.TryParse(item.Text, out difficulty);
+            resetJeu();
+            ia = new IA(map, map.getPlayerValue()); // TODO 
+        }
+
     }
 }
