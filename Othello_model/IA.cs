@@ -11,7 +11,7 @@ namespace Othello_model
     {
         private Map map;
         private int playerValue;
-        private int depth;
+        private int depth_const;
         private int BEST_WHITE;
         private int BEST_BLACK;
 
@@ -20,16 +20,16 @@ namespace Othello_model
         public IA(Map map, int playerValue, int depth) {
             this.map = map;
             this.playerValue = playerValue;
-            this.depth = depth;
-            BEST_WHITE = 1;
-            BEST_BLACK = 18;
+            this.depth_const = depth;
+            BEST_WHITE = 18;
+            BEST_BLACK = 1;
         }
 
         public int[] play() {
-            var returnedValue = minmax(map, playerValue, this.depth);
+            var returnedValue = minmaxAlex(map, 4/*this.depth_const*/);
 
             //var returnedValue = minmaxAlphaBeta(this.map, this.playerValue,
-            //    this.depth, this.BEST_BLACK, this.BEST_WHITE);
+            //    depth_const, this.BEST_BLACK, this.BEST_WHITE);
 
             int theScore = returnedValue.Key;
             int[] theMove = returnedValue.Value;
@@ -107,7 +107,7 @@ namespace Othello_model
                         map2.playMove(moveList[i][0], moveList[i][1]);
 
                         // return 2 values
-                        var returnedValue = minmaxAlphaBeta(map2, this.depth + 1, maxDepth,
+                        var returnedValue = minmaxAlphaBeta(map2, depth /*this.depth + 1 (erreur possible )*/, maxDepth,
                             blackBest, whiteBest);
                         int theScore = returnedValue.Key;
                         int[] theMove = new int[] { moveList[i][0], moveList[i][1] };
@@ -179,6 +179,101 @@ namespace Othello_model
             }
             // return multiple values : score and chosenMove[]
             return new KeyValuePair<int, int[]>(chosenScore, chosenMove);
+        }
+
+        // recursive minmax algorithme without alpha beta cutoffs
+        // return multiple values of multiple types : int score ; int[] chosenMove
+        private KeyValuePair<int, int[]> minmaxAlex(Map map, int depth)
+        {
+            int[] chosenMove = new int[] { -1, -1 }; // default
+            int chosenScore = 0;
+
+            if (!(depth > 0) || map.getNbFreeSpace() == 0 /* End Game */)
+            {
+                chosenScore = evaluation(map);
+
+            }
+            else
+            {
+                List<int[]> moveList = map.findMove(this.playerValue);
+                if (moveList.Count == 0)
+                {
+                    //chosenScore = (map.getPlayerValue()==this.playerValue)?-200:200; //Pas de cout possible valeur du coups précédent faible //map.getScore(this.playerValue);
+                    Map map2 = (Map)map.Clone();
+                    map.passMove();
+                    var returnedValue = minmaxAlex(map2, depth--);
+                    chosenScore += returnedValue.Key;
+                }
+                else
+                {
+                    int bestScore = -999999; 
+                    int[] bestMove = new int[] { moveList[0][0], moveList[0][1] }; // default first move possible
+
+                    for (int i = 1; i < moveList.Count; i++)
+                    {
+
+                        Map map2 = (Map)map.Clone();
+                        map2.playMove(moveList[i][0], moveList[i][1]);
+
+                        // return 2 values
+                        var returnedValue = minmaxAlex(map2, depth--);
+                        int theScore = returnedValue.Key;
+                        int[] theMove = new int[] { moveList[i][0], moveList[i][1] };
+
+                        if (theScore > bestScore)
+                        {
+                            bestScore = theScore;
+                            bestMove = theMove;
+                        }
+                    }
+                    chosenScore = bestScore;
+                    chosenMove = bestMove;
+                }
+            }
+            // return multiple values : score and chosenMove[]
+            return new KeyValuePair<int, int[]>(chosenScore, chosenMove);
+        }
+
+        private int evaluation(Map map) {            
+            int computeScore = 0;
+            if (map.getNbFreeSpace() == 0)
+            {
+                int[] mapScore = map.getScore();
+                if (playerValue == -1)
+                {
+                    if (mapScore[1] > mapScore[0])
+                    { // Victory computer
+                        computeScore = 10000 + mapScore[1] - mapScore[0];
+                    }
+                    else
+                    { //lose or draw
+                        computeScore = -10000 + mapScore[1] - mapScore[0];
+                    }
+                }
+                else
+                {
+                    if (mapScore[1] < mapScore[0])
+                    { // Victory computer
+                        computeScore = 10000 + mapScore[1] - mapScore[0];
+                    }
+                    else
+                    { //lose or draw
+                        computeScore = -10000 + mapScore[1] - mapScore[0];
+                    }
+                }
+            }
+            else {
+                int[] mapScore = map.evaluation();
+                if (playerValue == -1)
+                {
+                    computeScore =  mapScore[1] - mapScore[0];
+                }
+                else
+                {
+                    computeScore = mapScore[0] - mapScore[1];
+                }
+            }
+            return computeScore;
         }
 
     }
