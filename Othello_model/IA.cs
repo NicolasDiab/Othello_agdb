@@ -216,7 +216,7 @@ namespace Othello_model
                         map2.playMove(moveList[i][0], moveList[i][1]);
 
                         // return 2 values
-                        var returnedValue = minmaxAlex(map2, depth--);
+                        var returnedValue = minmaxAlex(map2, depth-1);
                         int theScore = returnedValue.Key;
                         int[] theMove = new int[] { moveList[i][0], moveList[i][1] };
 
