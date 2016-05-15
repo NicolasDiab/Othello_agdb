@@ -41,7 +41,6 @@
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joueurVsJoueurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joueurVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iAVsIAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.difficultéToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,8 +142,7 @@
             // 
             this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.joueurVsJoueurToolStripMenuItem,
-            this.joueurVsIAToolStripMenuItem,
-            this.iAVsIAToolStripMenuItem});
+            this.joueurVsIAToolStripMenuItem});
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
             this.optionToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionToolStripMenuItem.Text = "Options";
@@ -164,13 +162,6 @@
             this.joueurVsIAToolStripMenuItem.Text = "Joueur vs IA";
             this.joueurVsIAToolStripMenuItem.Click += new System.EventHandler(this.joueurVsIAToolStripMenuItem_Click);
             // 
-            // iAVsIAToolStripMenuItem
-            // 
-            this.iAVsIAToolStripMenuItem.Name = "iAVsIAToolStripMenuItem";
-            this.iAVsIAToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.iAVsIAToolStripMenuItem.Text = "IA vs IA";
-            this.iAVsIAToolStripMenuItem.Click += new System.EventHandler(this.iAVsIAToolStripMenuItem_Click);
-            // 
             // difficultéToolStripMenuItem
             // 
             this.difficultéToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -189,56 +180,56 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem2.Text = "1";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem3.Text = "2";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem4.Text = "3";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem5.Text = "4";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem6.Text = "5";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem7.Text = "6";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem8.Text = "7";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem9.Text = "8";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.eventSetDifficulty);
             // 
@@ -328,7 +319,6 @@
         private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joueurVsJoueurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joueurVsIAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem iAVsIAToolStripMenuItem;
         private System.Windows.Forms.TextBox txbJoueur;
         private System.Windows.Forms.TextBox txbScoreBlack;
         private System.Windows.Forms.TextBox txbScoreBlue;

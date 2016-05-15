@@ -25,7 +25,7 @@ namespace Othello_view
         {
             InitializeComponent();
             mode = 1;
-            difficulty = 1;
+            difficulty = 4;
         }
 
         private void FOthello_Load(object sender, EventArgs e)
@@ -263,12 +263,6 @@ namespace Othello_view
             refresh();
         }
 
-        private void iAVsIAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mode = 3;
-            resetJeu();
-            refresh();
-        }
 
         private void btnSurrend_Click(object sender, EventArgs e)
         {
@@ -281,7 +275,8 @@ namespace Othello_view
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             int.TryParse(item.Text, out difficulty);
             resetJeu();
-            ia = new IA(map, map.getPlayerValue()); // TODO 
+            refresh();
+            ia = new IA(map, -1,difficulty); 
         }
 
     }
